@@ -68,6 +68,7 @@ const progressBar = new ProgressBar(
 const crawler = new Crawler({
   maxConnections: 10,
   rateLimit: 100,
+  jQuery: 'cheerio',
   callback: (error, res, done) => {
     if (error) {
       console.log(`Error: ${error}`);
