@@ -6,11 +6,19 @@
   "bin": {
     "seo-checkmate": "./index.js"
   },
-  "scripts": {
-    "test": "seo-checkmate --site localhost:3000 --restrictions no-external,no-subdomain"
+  "scripts": {},
+  "author": {
+    "name": "Sy Bohy"
   },
-  "author": "",
   "license": "ISC",
+  "keywords": [
+    "seo",
+    "check",
+    "crawler",
+    "analysis",
+    "optimization",
+    "website"
+  ],
   "dependencies": {
     "axios": "^1.4.0",
     "chalk": "^4.1.2",

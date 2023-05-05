@@ -88,7 +88,7 @@ const crawler = new Crawler({
 
       if (res.statusCode === 404) {
         brokenLinks.push(origin);
-        console.log(`Broken link (404): ${origin}`);
+        // console.log(`Broken link (404): ${origin}`);
       }
 
       if (contentType && contentType.includes("text/html")) {
