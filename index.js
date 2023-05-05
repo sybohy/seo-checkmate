@@ -57,6 +57,12 @@ const isExternalDomain = (url) => {
   return hostname !== mainDomain;
 };
 
+const isPdfUrl = (url) => {
+  const parsedUrl = new URL(url);
+  const pathname = parsedUrl.pathname;
+  return pathname.endsWith('.pdf');
+};
+
 const crawledUrls = new Set();
 const brokenLinks = [];
 
@@ -88,20 +94,39 @@ const crawler = new Crawler({
       if (contentType && contentType.includes("text/html")) {
         const $ = res.$;
 
-        $("a[href]").each((_, link) => {
+        $("a[href]").each(async (_, link) => {
           const href = link.attribs.href;
           if (href.startsWith("/") || href.startsWith(args.site)) {
             const fullUrl = href.startsWith("/")
               ? `${args.site}${href}`
               : href;
-
+        
             if (
               (!args.restrictions.includes("no-subdomain") || !isSubdomain(fullUrl)) &&
               (!args.restrictions.includes("no-external") || !isExternalDomain(fullUrl))
             ) {
               if (!crawledUrls.has(fullUrl)) {
                 crawledUrls.add(fullUrl);
-                crawler.queue(fullUrl);
+        
+                if (isPdfUrl(fullUrl)) {
+                  // If the URL points to a PDF file, fetch it using axios and check the status code
+                  try {
+                    const response = await axios.head(fullUrl);
+                    if (response.status === 404) {
+                      brokenLinks.push(fullUrl);
+                      if (args.verbose) {
+                        console.log(`Broken link (404): ${fullUrl}`);
+                      }
+                    }
+                  } catch (error) {
+                    if (args.verbose) {
+                      console.log(`Error fetching PDF: ${fullUrl} - ${error.message}`);
+                    }
+                  }
+                } else {
+                  // If the URL does not point to a PDF file, add it to the crawler queue
+                  crawler.queue(fullUrl);
+                }
               }
             }
           }
