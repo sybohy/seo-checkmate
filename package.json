@@ -1,6 +1,6 @@
 {
   "name": "seo-checkmate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility to check the SEO health of a site or localhost instance. Checks for missing links, slow pages, and more.",
   "main": "index.js",
   "bin": {
