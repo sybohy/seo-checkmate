@@ -1,0 +1,29 @@
+# Node.js/npm related
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+
+# Build output and temporary files
+dist/
+.tmp/
+.cache/
+
+# Editor and IDE related files
+*.sublime*
+*.iml
+*.idea/
+*.vscode/
+*.history/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

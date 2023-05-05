@@ -1,0 +1,23 @@
+{
+  "name": "seo-checkmate",
+  "version": "1.0.0",
+  "description": "Utility to check the SEO health of a site or localhost instance. Checks for missing links, slow pages, and more.",
+  "main": "index.js",
+  "bin": {
+    "seo-checkmate": "./index.js"
+  },
+  "scripts": {
+    "test": "seo-checkmate --site localhost:3000 --restrictions no-external,no-subdomain"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.3",
+    "crawler": "^1.4.0",
+    "progress": "^2.0.3",
+    "xml2js": "^0.5.0",
+    "yargs": "^17.7.2"
+  }
+}
